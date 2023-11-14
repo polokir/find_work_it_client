@@ -58,3 +58,8 @@ export const LoginButton = styled.p`
   }
 
 `
+
+export const ButtonList = styled.ul`
+  display: flex;
+  gap: 8px;
+  `
