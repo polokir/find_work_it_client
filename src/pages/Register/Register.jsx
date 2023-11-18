@@ -11,16 +11,18 @@ import {
   TitleContainer,
 } from "./Register.styled";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { isAuthUser } from "../../redux/slice/auth";
 
 const Register = () => {
   const [isRecrut, setIsRecrut] = useState(false);
-  const [registerData, setRegisterData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const isAuth = useSelector(isAuthUser);
 
-  console.log(isRecrut);
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div style={{ backgroundColor: "#eeeeee" }}>
       <HeaderLight selector={isRecrut} setSelector={setIsRecrut} />
@@ -67,7 +69,7 @@ const Register = () => {
               </TitleContainer>
             </>
           )}
-          <RegisterForm isRecrut={isRecrut} setFormData={setRegisterData} />
+          <RegisterForm isRecrut={isRecrut}/>
         </MainContainer>
       </Container>
     </div>

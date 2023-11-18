@@ -3,11 +3,11 @@ import MyHeader from "../../components/Header/Header"
 import Hero from "../../components/Hero/Hero"
 
 
-const Home = () => {
+const Home = ({isAuth}) => {
     const [isRecrut, setIsRecrut] = useState(false);
     return (
         <>
-        <MyHeader setClicked={setIsRecrut} clicked={isRecrut}/>
+        <MyHeader isAuth={isAuth} setClicked={setIsRecrut} clicked={isRecrut}/>
         <Hero isRecrut={isRecrut}/>
         </>
     )

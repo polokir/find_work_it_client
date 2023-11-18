@@ -3,9 +3,9 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import KeyIcon from '@mui/icons-material/Key';
 import { Link } from "react-router-dom";
 
-const LoginForm = ({ setFormData }) => {
+const LoginForm = ({ setFormData,submit }) => {
   return (
-    <Form>
+    <Form onSubmit={(e) => submit(e)}>
         <TitleForm>Вхід в акаунт</TitleForm>
       <InputContainer>
         <Input

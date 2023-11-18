@@ -82,7 +82,7 @@ export const authSlice = createSlice({
       })
 
       .addCase(fetchLoginRecrut.fulfilled, (state, action) => {
-        state.recruiter = action.payload;
+        state.recruiter = action.payload.recruiter;
         state.status = "loaded";
         state.employee = null;
       })
@@ -101,7 +101,7 @@ export const authSlice = createSlice({
         state.status = "loading";
       })
       .addCase(registerRecrut.fulfilled, (state, action) => {
-        state.recruiter = action.payload;
+        state.recruiter = action.payload.recruiter;
         state.status = "loaded";
         state.employee = null;
       })
@@ -121,7 +121,7 @@ export const authSlice = createSlice({
       })
 
       .addCase(fetchLoginEmployee.fulfilled, (state, action) => {
-        state.employee = action.payload;
+        state.employee = action.payload.employee;
         state.status = "loaded";
         state.recruiter = null;
       })
@@ -140,7 +140,7 @@ export const authSlice = createSlice({
         state.status = "loading";
       })
       .addCase(registerEmployee.fulfilled, (state, action) => {
-        state.employee = action.payload;
+        state.employee = action.payload.employee;
         state.status = "loaded";
         state.recruiter = null;
       })
@@ -153,7 +153,7 @@ export const authSlice = createSlice({
     }
   
 });
-export const isAuthUser = (state) => Boolean(state.auth.user);
+export const isAuthUser = (state) => Boolean(state.auth.recruiter || state.auth.employee);
 export const isSuccessRegister = (state) => Boolean(state.auth.user);
 export const authReducer = authSlice.reducer;
 export const { logout } = authSlice.actions;
