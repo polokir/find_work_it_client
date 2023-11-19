@@ -3,16 +3,34 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "../../styled-components/Container.styled";
-
+import NoAvatar from "../../assets/no-avatar.webp";
 import LoginHeader from "../../components/LoginHeader/LoginHeader";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import PersonIcon from "@mui/icons-material/Person";
+import {
+  InfoSection,
+  MagicButton,
+  RecrutAvatar,
+  RecrutDetail,
+  RecrutText,
+  VacancySection,
+  VacancyTitle,
+} from "./Vacancy.styled";
+import ReactMarkdown from "react-markdown";
+import styles from "./markdown.module.css";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import { useSelector } from "react-redux";
+
 
 const Vacancy = () => {
   const params = useParams();
   const [vacancy, setVacancy] = useState();
+  const isRecrut = useSelector(state=>state.auth.recruiter);
 
   useEffect(() => {
     const fetchVacancy = async () => {
       const result = await axios.get(`vacancy/${params.id}`);
+      console.log(result, "|VACANCY BY ID|");
       setVacancy(result.data);
     };
     if (params.id) {
@@ -20,12 +38,63 @@ const Vacancy = () => {
     }
   }, []);
 
+  const handleVacancy = async () =>{
+    if(isRecrut){
+        const result = await axios.get(`/vacancy/can/${params.id}`)
+        console.log(result.data)
+    }else{
+        const result = await axios.patch(`/vacancy/apply/${params.id}`);
+        if(result.statusText === 'OK'){
+            alert('Ваша заявка принята');
+        }
+    }
+  }
+
   return (
     <>
-      <LoginHeader />
-      <Container>
-        
-      </Container>
+      {vacancy && (
+        <VacancySection>
+          <Container>
+            <LoginHeader />
+            <VacancyTitle>{vacancy.title}</VacancyTitle>
+            <RecrutDetail>
+              <div>
+                <RecrutAvatar src={NoAvatar} />
+              </div>
+              <div>
+                <RecrutText>{vacancy.recruiter.name}</RecrutText>
+                <RecrutText>{vacancy.recruiter.company_name}</RecrutText>
+              </div>
+              <div>
+                <RecrutText style={{ marginLeft: "10px" }}>
+                  <MyLocationIcon
+                    style={{ marginRight: "3px" }}
+                    fontSize="small"
+                  />{" "}
+                  {vacancy.location || "Дистанційно"}
+                </RecrutText>
+              </div>
+            </RecrutDetail>
+            <ReactMarkdown
+              className={styles.markdowm}
+              children={vacancy.text}
+            />
+            <InfoSection>
+              <RecrutText>
+                <AccessTimeIcon fontSize="small" />{" "}
+                {new Date(vacancy.createdAt).toLocaleDateString("en-GB")}
+              </RecrutText>
+
+              <RecrutText>
+                <PersonIcon fontSize="small" /> {vacancy.apply_count}
+              </RecrutText>
+            </InfoSection>
+            <MagicButton onClick={handleVacancy}>
+                {(isRecrut && isRecrut.id===vacancy.recruiter._id ) ? "Подивитися шукачів" : "Відгукнутись"}
+            </MagicButton>
+          </Container>
+        </VacancySection>
+      )}
     </>
   );
 };
