@@ -9,11 +9,14 @@ export const ProfileContainer = styled.div`
   padding:30px 0;
 `;
 
-export const Avatar = styled.div``;
+export const Avatar = styled.div`
+
+`;
 
 export const AvatarImg = styled.img`
   width: 200px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 export const DescList = styled.ul``;
 

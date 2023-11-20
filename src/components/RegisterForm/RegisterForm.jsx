@@ -40,7 +40,7 @@ const RegisterForm = ({ isRecrut }) => {
     e.preventDefault();
   };
 
-  
+  console.log(registerData);
   return (
     <Form onSubmit={(e) => handleRegistration(e)}>
       <TitleForm>Реєстрація {isRecrut ? "роботодавцям" : "шукачам"}</TitleForm>
@@ -223,6 +223,27 @@ const RegisterForm = ({ isRecrut }) => {
                 setRegisterData((prevData) => ({
                   ...prevData,
                   position: e.target.value,
+                }))
+              }
+            />
+            <RadarIcon
+              style={{
+                position: "absolute",
+                left: "1%",
+                top: "30%",
+                color: "#FFD100",
+              }}
+            />
+          </InputContainer>
+
+          <InputContainer>
+            <Input
+              type="text"
+              placeholder="Навички... (Введить чрез пробіл)"
+              onChange={(e) =>
+                setRegisterData((prevData) => ({
+                  ...prevData,
+                  skills: (e.target.value).split(" "),
                 }))
               }
             />

@@ -1,12 +1,14 @@
 import axios from "../../redux/axios-config";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "../../styled-components/Container.styled";
 import NoAvatar from "../../assets/no-avatar.webp";
 import LoginHeader from "../../components/LoginHeader/LoginHeader";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PersonIcon from "@mui/icons-material/Person";
+import { Navigate } from "react-router-dom";
+
 import {
   InfoSection,
   MagicButton,
@@ -21,11 +23,11 @@ import styles from "./markdown.module.css";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import { useSelector } from "react-redux";
 
-
 const Vacancy = () => {
   const params = useParams();
   const [vacancy, setVacancy] = useState();
-  const isRecrut = useSelector(state=>state.auth.recruiter);
+  const isRecrut = useSelector((state) => state.auth.recruiter);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVacancy = async () => {
@@ -38,17 +40,17 @@ const Vacancy = () => {
     }
   }, []);
 
-  const handleVacancy = async () =>{
-    if(isRecrut){
-        const result = await axios.get(`/vacancy/can/${params.id}`)
-        console.log(result.data)
-    }else{
-        const result = await axios.patch(`/vacancy/apply/${params.id}`);
-        if(result.statusText === 'OK'){
-            alert('Ваша заявка принята');
-        }
+  const handleVacancy = async () => {
+    if (isRecrut) {
+      console.log("Navigate");
+      navigate(`/vacancy/${params.id}/candidates`);
+    } else {
+      const result = await axios.patch(`/vacancy/apply/${params.id}`);
+      if (result.statusText === "OK") {
+        alert("Succes");
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -90,7 +92,9 @@ const Vacancy = () => {
               </RecrutText>
             </InfoSection>
             <MagicButton onClick={handleVacancy}>
-                {(isRecrut && isRecrut.id===vacancy.recruiter._id ) ? "Подивитися шукачів" : "Відгукнутись"}
+              {isRecrut && isRecrut.id === vacancy.recruiter._id
+                ? "Подивитися шукачів"
+                : "Відгукнутись"}
             </MagicButton>
           </Container>
         </VacancySection>

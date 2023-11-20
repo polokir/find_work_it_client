@@ -3,7 +3,7 @@ import { HeroSection, HeroText, HeroTitle, TitleContainer } from "./Hero.styled"
 import cat from "../../assets/cat.png";
 import SearchInput from "../SearchInput/SearchInput";
 
-const Hero = ({ isRecrut,setInput }) => {
+const Hero = ({ isRecrut,setInput,handleSearch }) => {
   return (
     <HeroSection>
       <Container>
@@ -21,7 +21,7 @@ const Hero = ({ isRecrut,setInput }) => {
             </>
           )}
         </TitleContainer>
-        <SearchInput isRecrut={isRecrut} setInput={setInput} />
+        <SearchInput isRecrut={isRecrut} setInput={setInput} handleSearch={handleSearch} />
       </Container>
     </HeroSection>
   );

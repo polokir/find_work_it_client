@@ -2,6 +2,7 @@ import { Form, Input, InputContainer, SubmitButton, TextArea, TitleForm } from "
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 const VacancyForm = ({setText,desc, setDesc,submit}) => {
   const options = useMemo(
     () => ({
@@ -17,6 +18,9 @@ const VacancyForm = ({setText,desc, setDesc,submit}) => {
     }),
     [],
   );
+  const id = useParams();
+  
+
   return (
     <Form onSubmit={(e)=>submit(e)}>
       <TitleForm>Нова вакансія</TitleForm>
@@ -72,7 +76,6 @@ const VacancyForm = ({setText,desc, setDesc,submit}) => {
           location: e.target.value,
         })))}/>
       </InputContainer>
-
       <SubmitButton>Створити</SubmitButton>
     </Form>
   );

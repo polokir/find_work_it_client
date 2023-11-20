@@ -10,9 +10,14 @@ const Home = ({ isAuth }) => {
   const [isRecrut, setIsRecrut] = useState(false);
   const [vacancies, setVacancies] = useState([]);
   const [query, setQuery] = useState("");
+  const [isSearch,setIsSearch] = useState(false);
   
-  const handleSearch = async () =>{
-    
+  const handleSearch = async (e) =>{
+    e.preventDefault();
+    const result = await axios.get(`/vacancy/search?title=${query}`);
+    console.log(result.data)
+    setVacancies(result.data);
+    setIsSearch(true);
   }
 
   useEffect(() => {
@@ -21,14 +26,16 @@ const Home = ({ isAuth }) => {
       console.log(result, "|VACANCIES|");
       setVacancies(result.data);
     };
-    if (isAuth) {
+    if (isAuth && query === "") {
       fetchVacancies();
     }
-  }, []);
+  }, [isSearch,query]);
+
+  console.log(query)
   return (
     <>
       <MyHeader isAuth={isAuth} setClicked={setIsRecrut} clicked={isRecrut} />
-      <Hero isRecrut={isRecrut} setInput={setQuery}  />
+      <Hero isRecrut={isRecrut} setInput={setQuery} handleSearch={handleSearch}  />
       <div style={{ padding: "30px 0", backgroundColor: "#eeee" }}>
         <Container>
           <VacancyEnum vacancies={vacancies} />

@@ -1,8 +1,8 @@
 import { FindButton, Input, InputContainer } from "./SearchInput.styled";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-const SearchInput = ({ isRecrut, setInput }) => {
+const SearchInput = ({ isRecrut, setInput, handleSearch }) => {
   return (
-    <form action="">
+    <form action="" onSubmit={(e)=>handleSearch(e)}>
       <InputContainer>
         <div
           style={{

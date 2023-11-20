@@ -7,6 +7,7 @@ import { isAuthUser } from "./redux/slice/auth";
 import CreateVacancy from "./pages/CreateVacancy/CreateVacancy";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Vacancy from "./pages/Vacancy/Vacancy";
+import Candidates from "./pages/Candidates/Candidates";
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
       <Route path="/createVacancy" element={<CreateVacancy />} />
       <Route path="/profile" element={<MyProfile />} />
       <Route path="vacancy/:id" element={<Vacancy />} />
+      <Route path="vacancy/:id/candidates" element={<Candidates/>}/>
     </Routes>
     </>
   );
