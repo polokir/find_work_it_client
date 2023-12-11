@@ -8,6 +8,7 @@ import CreateVacancy from "./pages/CreateVacancy/CreateVacancy";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Vacancy from "./pages/Vacancy/Vacancy";
 import Candidates from "./pages/Candidates/Candidates";
+import Statistic from "./pages/Statistic/Statistic";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
       <Route path="/profile" element={<MyProfile />} />
       <Route path="vacancy/:id" element={<Vacancy />} />
       <Route path="vacancy/:id/candidates" element={<Candidates/>}/>
+      <Route path="vacancy/statistic" element={<Statistic/>} />
     </Routes>
     </>
   );

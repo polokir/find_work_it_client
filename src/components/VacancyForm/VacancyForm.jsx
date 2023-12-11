@@ -54,8 +54,8 @@ const VacancyForm = ({setText,desc, setDesc,submit}) => {
       </InputContainer>
 
       <InputContainer>
-        <Input type="text" placeholder="Заробітня плата..."
-        salary={(e) => setText((prevData =>({
+        <Input type="number" placeholder="Заробітня плата..."
+        onChange={(e) => setText((prevData =>({
           ...prevData,
           salary: e.target.value,
         })))}/>

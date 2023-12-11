@@ -35,6 +35,7 @@ export const VacancyList = styled.ul`
   gap: 0.5em;
 `;
 export const VacancyItem = styled.li`
+  position: relative;
   background-color: #fff;
   width: 95%;
   padding: 10px;
@@ -66,3 +67,9 @@ export const Info = styled.p`
   display: flex;
   align-items: center;
 `;
+
+export const DeleteButton = styled.button`
+position: absolute;
+top: 0;
+right: 0;
+`

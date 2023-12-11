@@ -7,7 +7,6 @@ import axios from "../../redux/axios-config"
 const CreateVacancy = () => {
   const [fields, setFields] = useState({ text: "" });
   const [description, setDescription] = useState("");
-
   const changeHandler = useCallback((description) =>{
     setDescription(description)
     setFields((prevData=>({...prevData,text: description})));

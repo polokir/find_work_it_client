@@ -75,6 +75,7 @@ const Vacancy = () => {
                   />{" "}
                   {vacancy.location || "Дистанційно"}
                 </RecrutText>
+                <RecrutText>{vacancy.year_of_experience} роки досвіду</RecrutText>
               </div>
             </RecrutDetail>
             <ReactMarkdown

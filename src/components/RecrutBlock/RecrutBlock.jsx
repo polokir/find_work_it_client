@@ -11,12 +11,12 @@ import { useRef, useState } from "react";
 import axios from "../../redux/axios-config";
 import { Button } from "@mui/material";
 
-const RecrutBlock = ({ recrut, employee, vacancies }) => {
+const RecrutBlock = ({ recrut, employee, vacancies, setVacancies }) => {
   const imgRef = useRef(null);
   const resRef = useRef(null);
   const [imageURL, setImageUrl] = useState("");
   const [resume, setRezume] = useState("");
-
+console.log(setVacancies,"ENUM")
   const handleChangeFile = async (e) => {
     try {
       const formData = new FormData();
@@ -93,7 +93,7 @@ const RecrutBlock = ({ recrut, employee, vacancies }) => {
             </DescList>
           </ProfileContainer>
 
-          <VacancyEnum vacancies={vacancies} />
+          <VacancyEnum setVacancies={setVacancies} vacancies={vacancies} />
         </>
       ) : (
         <>
