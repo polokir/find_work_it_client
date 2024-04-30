@@ -7,7 +7,8 @@ import NoAvatar from "../../assets/no-avatar.webp";
 import LoginHeader from "../../components/LoginHeader/LoginHeader";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PersonIcon from "@mui/icons-material/Person";
-import { Navigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-custom-alert';
+import 'react-custom-alert/dist/index.css';
 
 import {
   InfoSection,
@@ -47,11 +48,15 @@ const Vacancy = () => {
     } else {
       const result = await axios.patch(`/vacancy/apply/${params.id}`);
       if (result.statusText === "OK") {
-        alert("Succes");
+        toast.success("pidar")
+        setTimeout(()=>{
+          return navigate('/');
+        },1000)
+        return;
       }
+      toast.success("gondon")
     }
   };
-
   return (
     <>
       {vacancy && (
@@ -100,6 +105,7 @@ const Vacancy = () => {
           </Container>
         </VacancySection>
       )}
+       <ToastContainer/>
     </>
   );
 };

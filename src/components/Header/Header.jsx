@@ -12,8 +12,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoText from "../LogoText/LogoText";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useSelector } from "react-redux";
+import { Button } from "@mui/material";
 
-const MyHeader = ({isAuth,clicked,setClicked}) => {
+const MyHeader = ({isAuth,clicked,setClicked, logout}) => {
   const recruiter = useSelector(state=>state.auth.recruiter)
 
   return (
@@ -43,6 +44,11 @@ const MyHeader = ({isAuth,clicked,setClicked}) => {
                    <LoginButton> <PersonAddIcon style={{paddingRight:"5px"}} fontSize="medium"/> Створити вакансію</LoginButton>
                  </Link>
                 )}
+              </li>
+              <li>
+                <Button onClick={()=>logout()} color="warning">
+                  Вийти
+                </Button>
               </li>
                
             </ButtonList>

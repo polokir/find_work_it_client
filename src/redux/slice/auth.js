@@ -23,17 +23,15 @@ export const registerRecrut = createAsyncThunk(
   "auth/RegisterRecrut",
   async (params) => {
     const { data } = await axios.post("/api/recrut/register", params);
+    console.log(data, "|REDUx|");
     return data;
   }
 );
 
-export const logoutUser = createAsyncThunk(
-  "auth/LogoutRecrut",
-  async (params) => {
-    const { data } = await axios.post("/api/recrut/logout", params);
-    return data;
-  }
-);
+export const logoutUser = createAsyncThunk("auth/LogoutRecrut", async () => {
+  const { data } = await axios.post("/api/recrut/logout");
+  return data;
+});
 //---------------------------------------------------------------------------------
 
 //------------------------Employee-------------------------------------------------
@@ -56,13 +54,30 @@ export const registerEmployee = createAsyncThunk(
 
 export const logoutEmployee = createAsyncThunk(
   "auth/LogoutEmployee",
-  async (params) => {
-    const { data } = await axios.post("/api/employee/logout", params);
+  async () => {
+    const { data } = await axios.post("/api/employee/logout");
     return data;
   }
 );
 
 //---------------------------------------------------------------------------------
+
+//-----------------------------------AVATAR--------------------------------------
+export const updateAvatarEmpl = createAsyncThunk(
+  "updateAva/Empl",
+  async (params) => {
+    const { data } = await axios.patch("/api/employee/avatar", params);
+    return data;
+  }
+);
+
+export const updateAvatarRecrut = createAsyncThunk(
+  "updateAva/Recr",
+  async (params) => {
+    const { data } = await axios.patch("/api/recrut/avatar", params);
+    return data;
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -74,6 +89,18 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        state.recruiter = null;
+      })
+      .addCase(logoutEmployee.fulfilled, (state, action) => {
+        state.employee = null;
+      })
+      .addCase(updateAvatarRecrut.fulfilled, (state, action) => {
+        state.recruiter.avatarURL = action.payload.avatarURL;
+      })
+      .addCase(updateAvatarEmpl.fulfilled, (state, action) => {
+        state.employee.avatarURL = action.payload.avatarURL;
+      })
       //-------- recrut login --------------------
       .addCase(fetchLoginRecrut.pending, (state, action) => {
         state.recruiter = null;
@@ -127,10 +154,10 @@ export const authSlice = createSlice({
       })
 
       .addCase(fetchLoginEmployee.rejected, (state, action) => {
-          state.recruiter = null;
-          state.status = "failed";
-          state.employee = null;
-        })
+        state.recruiter = null;
+        state.status = "failed";
+        state.employee = null;
+      })
       //--------------------------------
 
       //-------- employee register --------------------
@@ -148,12 +175,12 @@ export const authSlice = createSlice({
         state.recruiter = null;
         state.status = "failed";
         state.employee = null;
-      })
-      //--------------------------------
-    }
-  
+      });
+    //--------------------------------
+  },
 });
-export const isAuthUser = (state) => Boolean(state.auth.recruiter || state.auth.employee);
+export const isAuthUser = (state) =>
+  Boolean(state.auth.recruiter || state.auth.employee);
 export const isSuccessRegister = (state) => Boolean(state.auth.user);
 export const authReducer = authSlice.reducer;
 export const { logout } = authSlice.actions;

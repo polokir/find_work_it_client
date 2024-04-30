@@ -1,0 +1,115 @@
+{
+    "professions": [
+      {
+        "name": "Frontend Developer",
+        "description": "Develops user interface of web applications using HTML, CSS, and JavaScript."
+      },
+      {
+        "name": "Backend Developer",
+        "description": "Works on server-side logic of web applications using programming languages like Java, Python, Node.js, etc."
+      },
+      {
+        "name": "Full Stack Developer",
+        "description": "Has skills in both frontend and backend development, capable of working with the full stack of technologies."
+      },
+      {
+        "name": "QA Engineer",
+        "description": "Ensures software quality through manual or automated testing."
+      },
+      {
+        "name": "System Analyst",
+        "description": "Analyzes and designs information systems based on business requirements."
+      },
+      {
+        "name": "Database Administrator",
+        "description": "Manages and maintains databases, ensuring data security and performance."
+      },
+      {
+        "name": "Network Engineer",
+        "description": "Designs and manages computer networks, including network equipment, routing, and security."
+      },
+      {
+        "name": "System Administrator",
+        "description": "Administers servers, computers, and operating systems in an organization."
+      },
+      {
+        "name": "Business Analyst",
+        "description": "Analyzes business processes and requirements, develops software specifications."
+      },
+      {
+        "name": "DevOps Engineer",
+        "description": "Combines development and operations, automates software development and deployment processes."
+      },
+      {
+        "name": "Machine Learning Engineer",
+        "description": "Works with machine learning algorithms and AI to create intelligent systems and analyze data."
+      },
+      {
+        "name": "Security Engineer",
+        "description": "Ensures information security, analyzes vulnerabilities, responds to security incidents."
+      }
+    ],
+    "subject_areas": [
+      "Web Development",
+      "Software Engineering",
+      "Quality Assurance",
+      "Database Management",
+      "Networking",
+      "System Administration",
+      "Business Analysis",
+      "DevOps",
+      "Machine Learning",
+      "Information Security"
+    ],
+    "languages": [
+        {
+          "name": "JavaScript",
+          "description": "A popular scripting language used for web development, including both frontend and backend development."
+        },
+        {
+          "name": "Python",
+          "description": "A high-level programming language known for its simplicity and readability, used in web development, data analysis, machine learning, and more."
+        },
+        {
+          "name": "Java",
+          "description": "A versatile programming language commonly used for building enterprise applications, mobile apps (Android), and large-scale systems."
+        },
+        {
+          "name": "C++",
+          "description": "A powerful programming language used for system programming, game development, and high-performance applications."
+        },
+        {
+          "name": "C#",
+          "description": "A programming language developed by Microsoft for building Windows applications, web services, and games using the .NET framework."
+        },
+        {
+          "name": "PHP",
+          "description": "A server-side scripting language used for creating dynamic web pages, web applications, and content management systems."
+        },
+        {
+          "name": "Ruby",
+          "description": "A dynamic and object-oriented programming language known for its simplicity and productivity, commonly used in web development."
+        },
+        {
+          "name": "Swift",
+          "description": "A programming language developed by Apple for building iOS, macOS, watchOS, and tvOS applications."
+        },
+        {
+          "name": "Kotlin",
+          "description": "A modern programming language developed by JetBrains, used for Android app development, web development, and more."
+        },
+        {
+          "name": "Go",
+          "description": "A statically typed and compiled programming language designed for efficiency and scalability, commonly used in cloud services and system programming."
+        },
+        {
+          "name": "R",
+          "description": "A language and environment for statistical computing and graphics, widely used in data analysis, statistical modeling, and machine learning."
+        },
+        {
+          "name": "TypeScript",
+          "description": "A superset of JavaScript that adds static typing and other features for building large-scale applications."
+        }
+      ]
+  }
+  

@@ -9,11 +9,7 @@ import { Navigate } from "react-router-dom";
 import { isAuthUser } from "../../redux/slice/auth";
 
 export const setToken = (token) =>{
-  if("accessToken" in token){
-    window.localStorage.setItem('token',token.accessToken);
-  }else{
-    alert('Something wrong');
-  }
+  window.localStorage.setItem('token',token);
 }
 
 const Login = () => {
@@ -24,17 +20,23 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     let data = await dispatch(fetchLoginRecrut(loginData));
+
     if(data.meta.requestStatus ==="rejected") {
       data = await dispatch(fetchLoginEmployee(loginData));
+      setToken(data.payload.accessToken)
+    }else{
+      setToken(data.payload.accessToken)
     }
 
-    setToken(data.payload.tokens)
+    
     console.log(data);
   };
 
   if(isAuth){
     return <Navigate to="/"/>
   }
+
+  
   return (
     <>
       <Container>

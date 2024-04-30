@@ -17,12 +17,11 @@ export const Form = styled.form`
   ${variables.breakPoints.desktop} {
     width: 600px;
     padding: 40px;
-
   }
   margin: 0 auto;
   align-items: center;
   gap: 20px;
-  
+
   background-color: #eeeeee;
 `;
 
@@ -33,7 +32,7 @@ export const InputContainer = styled.div`
 
 export const Input = styled.input`
   width: 100%;
- 
+
   padding: 10px 0;
   padding-left: 40px;
   border-radius: 5px;
@@ -63,7 +62,7 @@ export const SubmitButton = styled.button`
   font-size: 20px;
   padding: 5px 0;
   font-family: "Roboto", sans-serif;
-  border:0;
+  border: 0;
   border: 1px solid #999999;
   border-radius: 5px;
   font-weight: 700;
@@ -75,24 +74,47 @@ export const SubmitButton = styled.button`
   color: #fff;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #fff;
     color: #e59999;
   }
 `;
 
 export const TitleForm = styled.h3`
-text-align: center;
-font-size: 24px;
-font-weight: 700;
-font-family: "Roboto", sans-serif;
-margin-bottom: 25px;
-`
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 25px;
+`;
 export const Reglink = styled.p`
-color: #000000;
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 20px;
-margin: auto;
-`
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin: auto;
+`;
+
+export const SelectList = styled.ul`
+  display:${props => (props.focus) ? 'block' : 'none'}  ;
+  position: absolute;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  z-index: 2;
+`;
+
+export const OptionItem = styled.li`
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  border-bottom: 1px solid #e9f0e9;
+  &:hover{
+    background-color: #e9f0e9;
+  }
+
+`;
