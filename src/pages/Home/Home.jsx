@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import VacancyEnum from "../../components/VacancyEnum/VacancyEnum";
 import { Container } from "../../styled-components/Container.styled";
 import { useDispatch } from "react-redux";
-import { logoutEmployee, logoutUser } from "../../redux/slice/auth";
-import { PaginationItem } from "@mui/material";
+import { logout, logoutEmployee, logoutUser } from "../../redux/slice/auth";
+import { Pagination } from "@mui/material";
 
 const Home = ({ isAuth }) => {
   const dispatch = useDispatch();
@@ -16,8 +16,8 @@ const Home = ({ isAuth }) => {
   const [query, setQuery] = useState("");
   const [isSearch,setIsSearch] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-
-  const [itemOffset, setItemOffset] = useState(0);
+  const [page, setPage] = useState(1);
+  const [pageCount,setPageCont] = useState(0)
 
   const handleSearch = async (e) =>{
     e.preventDefault();
@@ -28,21 +28,38 @@ const Home = ({ isAuth }) => {
   }
 
   const handleLogout = async () =>{
+    dispatch(logout);
     return isRecrut ? dispatch(logoutUser()) : dispatch(logoutEmployee())
   }
 
+  const handlePageClick = (e,v) => {
+    setPage(v);
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    })
+  }
+
+  useEffect(()=>{
+    const updateTotal = async () =>{
+      const {data} = await axios.get('vacancy/totalnumb');
+      
+      setPageCont(Math.ceil(data.total/20));
+    }
+    updateTotal();
+  },[page]);
+
   useEffect(() => {
     const fetchVacancies = async () => {
-      const result = await axios.get(`vacancy?page=${itemOffset}&limit=${20}`);
-      // console.log(result, "|VACANCIES|");
-      setVacancies(result.data);
+      const {data} = await axios.get(`vacancy?page=${page}&limit=${20}`);
+      setVacancies(data);
     };
     if (isAuth && query === "") {
       fetchVacancies();
     }
-  }, [isSearch,query]);
+  }, [isAuth, query, page]);
 
-  console.log(vacancies)
+  console.log(page)
   return (
     <>
       <MyHeader isAuth={isAuth} setClicked={setIsRecrut} clicked={isRecrut} logout={handleLogout} />
@@ -53,6 +70,8 @@ const Home = ({ isAuth }) => {
             <VacancyEnum vacancies={vacancies} setVacancies={setVacancies}/>
           }
           
+
+         {vacancies.length > 19 && <Pagination count={pageCount} page={page} onChange={handlePageClick}/>} 
         </Container>
       </div>
       
