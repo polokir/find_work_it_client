@@ -48,13 +48,13 @@ const Vacancy = () => {
     } else {
       const result = await axios.patch(`/vacancy/apply/${params.id}`);
       if (result.statusText === "OK") {
-        toast.success("pidar")
+        toast.success("Відгук надіслано")
         setTimeout(()=>{
           return navigate('/');
         },1000)
         return;
       }
-      toast.success("gondon")
+      toast.success("Відгук надіслано")
     }
   };
   return (

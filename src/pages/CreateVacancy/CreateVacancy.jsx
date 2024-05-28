@@ -27,7 +27,7 @@ const CreateVacancy = () => {
     try {
       const data = await axios.post("/vacancy",fields);
       if (data.statusText === "Created"){
-        toast.success("pidar")
+        toast.success("Вакансия створена")
         setTimeout(()=>{
           return navigate('/');
         },1000)
